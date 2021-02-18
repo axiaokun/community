@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.QuestionDto;
 import com.example.demo.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,7 @@ public interface QuestionMapper {
 
     @Select("select count(1) from question where creator = #{accountId}")
     Integer countByUserId(String accountId);
+
+    @Select("select * from question where id = #{id}")
+    Question getById(Integer id);
 }

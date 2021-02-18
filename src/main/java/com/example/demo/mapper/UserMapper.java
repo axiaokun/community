@@ -1,10 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper//指定这是一个操作数据库的mapper
 public interface UserMapper {
@@ -16,4 +13,7 @@ public interface UserMapper {
 
     @Select("select * from user where account_id = #{accountId}")
     User findById(@Param("accountId") Integer creator);
+
+    @Update("update user set token = #{token}, gmt_modified = #{gmtModified} where account_id = #{accountId}")
+    void update(User dbUser);
 }
