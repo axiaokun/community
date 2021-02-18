@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface QuestionMapper {
     @Insert("insert into question (title,description,gmt_create,gmt_modified,creator,tag) values (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
-    public void create(Question question);
+    void create(Question question);
 
     @Select("select * from question limit #{offset}, #{size}")
     List<Question> list(Integer offset, Integer size);
@@ -18,4 +18,9 @@ public interface QuestionMapper {
     @Select("select count(1) from question")
     Integer count();
 
+    @Select("select * from question where creator = #{accountId} limit #{offset}, #{size}")
+    List<Question> listByUserId(String accountId, Integer offset, Integer size);
+
+    @Select("select count(1) from question where creator = #{accountId}")
+    Integer countByUserId(String accountId);
 }
