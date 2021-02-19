@@ -33,6 +33,7 @@ public class PublishController {
 
     @GetMapping("/publish")
     public String publish(){
+        int a = 1 / 0;
         return "publish";
     }
 
